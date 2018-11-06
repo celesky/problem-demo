@@ -1,5 +1,5 @@
 spring.application.name: sms-service
-server.port: 9050
+server.port: 8080
 
 eureka.instance.prefer-ip-address: true
 eureka.instance.instance-id: ${spring.cloud.client.ip-address}:${server.port}
