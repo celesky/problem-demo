@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
 
 /**
  * @desc: a restfull interface
@@ -25,7 +24,7 @@ public class SmsController {
     @GetMapping("/send")
     public String simulateSend() {
         try {
-            Thread.sleep(600000);
+            Thread.sleep(60000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
