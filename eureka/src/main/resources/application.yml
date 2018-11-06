@@ -1,0 +1,8 @@
+spring.application.name: eureka
+server.port: 1111
+
+eureka.instance.instance-id: ${spring.cloud.client.ip-address}:${server.port}
+eureka.instance.prefer-ip-address: true
+#eureka.instance.hostname=peer1
+eureka.client.register-with-eureka: false
+eureka.client.fetch-registry: false

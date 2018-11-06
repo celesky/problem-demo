@@ -1,0 +1,56 @@
+spring.application.name: gateway-server
+server.port: 7001
+
+#------------日志-------------------
+logging:
+  level:
+      org.springframework.cloud.gateway: TRACE
+      org.springframework.http.server.reactive: DEBUG
+      org.springframework.web.reactive: DEBUG
+      reactor.ipc.netty: DEBUG
+      redisratelimiter: DEBUG
+
+#---registry-----------
+eureka.instance.prefer-ip-address: true
+eureka.instance.instance-id: ${spring.cloud.client.ip-address}:${server.port}
+
+
+eureka.client.register-with-eureka: true
+eureka.client.fetch-registry: true
+eureka.client.registry-fetch-interval-seconds: 5
+eureka.client.service-url:
+            defaultZone: http://localhost:1111/eureka/
+            #defaultZone: http://peer1:1111/eureka/,http://peer2:1112/eureka/
+
+#--------health-------------------------
+management.endpoints.enabled-by-default: true
+management.endpoint.beans.enabled: true
+management.endpoint.info.enabled: true
+management.endpoints.web.exposure.include: '*'
+
+
+
+#----------------rule---------------------------
+spring.cloud.gateway.discovery.locator.lowerCaseServiceId: true
+spring.cloud.gateway.discovery.locator.enabled: true
+# ------------ ---rule-----------------
+
+#--------hystrix-----
+feign.hystrix.enabled: true
+
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: sms-service
+        uri: lb://SMS-SERVICE
+        predicates:
+        - Path=/sms-service/**
+        filters:
+        - Hystrix=successcmd
+
+
+hystrix.command.successcmd.execution.isolation.thread.timeoutInMilliseconds: 5
+
+
+
