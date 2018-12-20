@@ -5,9 +5,9 @@ server.port: 7001
 logging:
   level:
       org.springframework.cloud.gateway: TRACE
-      org.springframework.http.server.reactive: DEBUG
-      org.springframework.web.reactive: DEBUG
-      reactor.ipc.netty: DEBUG
+      org.springframework.http.server.reactive: INFO
+      org.springframework.web.reactive: INFO
+      reactor.ipc.netty: INFO
       redisratelimiter: DEBUG
 
 #---registry-----------
@@ -49,9 +49,10 @@ spring:
         filters:
         - Hystrix=successcmd
         - RewritePath=/sms-service/(?<segment>.*), /$\{segment}
-
+        - name: Retry
+          args:
+            retries: 1
+            statuses: BAD_GATEWAY
 
 hystrix.command.successcmd.execution.isolation.thread.timeoutInMilliseconds: 5000
-
-
 
