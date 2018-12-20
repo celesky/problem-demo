@@ -31,8 +31,8 @@ management.endpoints.web.exposure.include: '*'
 
 
 #----------------rule---------------------------
-spring.cloud.gateway.discovery.locator.lowerCaseServiceId: true
 spring.cloud.gateway.discovery.locator.enabled: true
+
 # ------------ ---rule-----------------
 
 #--------hystrix-----
@@ -48,9 +48,10 @@ spring:
         - Path=/sms-service/**
         filters:
         - Hystrix=successcmd
+        - RewritePath=/sms-service/(?<segment>.*), /$\{segment}
 
 
-hystrix.command.successcmd.execution.isolation.thread.timeoutInMilliseconds: 5
+hystrix.command.successcmd.execution.isolation.thread.timeoutInMilliseconds: 5000
 
 
 
