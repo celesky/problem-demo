@@ -11,7 +11,8 @@
     <modules>
         <module>sms-service</module>
         <module>gateway-server</module>
-
+        <module>client-service</module>
+        <module>eureka</module>
     </modules>
     
 </project>

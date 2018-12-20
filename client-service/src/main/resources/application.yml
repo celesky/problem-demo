@@ -1,0 +1,44 @@
+spring.application.name: client-service
+server.port: 9090
+
+eureka.instance.prefer-ip-address: true
+eureka.instance.instance-id: ${spring.cloud.client.ip-address}:${server.port}
+
+eureka.client:
+        register-with-eureka: true
+        fetch-registry: true
+        registry-fetch-interval-seconds: 5
+        service-url:
+            defaultZone: http://localhost:1111/eureka
+
+
+feign.hystrix.enabled: true
+########### feign全局默认值
+hystrix.command.default.execution:
+  isolation:
+      strategy: THREAD
+      thread.timeoutInMilliseconds: 30000
+  #超时开关
+  timeout.enabled: true
+
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 30000
+        readTimeout: 30000
+        loggerLevel: basic
+      raw-service:
+        connectTimeout: 60000
+        readTimeout: 60000
+        loggerLevel: full
+      sms-service:
+        connectTimeout: 20000
+        readTimeout: 20000
+        loggerLevel: full
+
+#请求处理的超时时间
+ribbon.ReadTimeout: 5000
+#请求连接的超时时间
+ribbon.ConnectTimeout: 5000
