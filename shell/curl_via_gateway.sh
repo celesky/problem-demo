@@ -1,5 +1,5 @@
 #/bin/bash
-# visit through gateway
+# access through gateway
 curl -X POST \
   http://localhost:7001/sms-service/sms/send \
   -H 'cache-control: no-cache' \
