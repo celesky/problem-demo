@@ -1,5 +1,5 @@
 #/bin/bash
-# access through tomcat directly
+    # access through tomcat directly
 curl -X POST \
   http://localhost:8080/sms/send \
   -H 'cache-control: no-cache' \
