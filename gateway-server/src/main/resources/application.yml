@@ -4,11 +4,11 @@ server.port: 7001
 #------------日志-------------------
 logging:
   level:
-      org.springframework.cloud.gateway: TRACE
-      org.springframework.http.server.reactive: INFO
-      org.springframework.web.reactive: INFO
-      reactor.ipc.netty: INFO
-      redisratelimiter: DEBUG
+      org.springframework.cloud.gateway: DEBUG
+#      org.springframework.http.server.reactive: INFO
+#      org.springframework.web.reactive: INFO
+#      reactor.ipc.netty: INFO
+#      redisratelimiter: DEBUG
 
 #---registry-----------
 eureka.instance.prefer-ip-address: true
@@ -22,15 +22,8 @@ eureka.client.service-url:
             defaultZone: http://localhost:1111/eureka/
             #defaultZone: http://peer1:1111/eureka/,http://peer2:1112/eureka/
 
-#--------health-------------------------
-management.endpoints.enabled-by-default: true
-management.endpoint.beans.enabled: true
-management.endpoint.info.enabled: true
-management.endpoints.web.exposure.include: '*'
-
-
-
 #----------------rule---------------------------
+#spring.cloud.gateway.discovery.locator.lowerCaseServiceId: true
 spring.cloud.gateway.discovery.locator.enabled: true
 
 # ------------ ---rule-----------------
